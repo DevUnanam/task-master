@@ -24,5 +24,11 @@ connectDB();
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
+// Add a root route
+app.get('/', (req, res) => {
+    res.send('Welcome to the TaskMaster API! Use /api/auth and /api/tasks for endpoints.');
+});
+
+
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
