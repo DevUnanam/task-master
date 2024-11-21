@@ -1,4 +1,0 @@
-MONGO_URI=mongodb+srv://Taskist1:EtXWeMljWIGghPZe@taskist.hz94m.mongodb.net/taskist?retryWrites=true&w=majority&appName=taskist
-
-JWT_SECRET=3162dcdf5fdb3d847f5aaa1b748a2341966e4f54ebdce8a5ce627ed79679c1df03eafaffa40a77fc8e45720b939500fcf7328292cb6b210ab1c068b77b010939
-
