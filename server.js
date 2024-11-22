@@ -16,9 +16,9 @@ app.use(express.json());
 
 // Enable CORS
 app.use(cors({
-    origin: 'http://localhost:3000', // Allow requests from your frontend URL
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
-    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    origin: 'http://localhost:3000', 
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
 }));
 
 // Allow preflight requests for all routes

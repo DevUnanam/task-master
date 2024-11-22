@@ -36,6 +36,9 @@ exports.loginUser = async (req, res) => {
         const user = await User.findOne({ email });
         if (!user) return res.status(404).json({ message: "User not found" });
 
+        console.log("Plain password:", password);
+        console.log("Hashed password from DB:", user.password);
+
         // Compare the entered password with the hashed password
         const isPasswordValid = await bcrypt.compare(password, user.password);
         if (!isPasswordValid) return res.status(400).json({ message: "Invalid credentials" });
@@ -49,4 +52,5 @@ exports.loginUser = async (req, res) => {
         res.status(500).json({ message: "Server error", error: err.message });
     }
 };
+
 
