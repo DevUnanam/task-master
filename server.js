@@ -11,9 +11,11 @@ const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
+// List of allowed origins
 const allowedOrigins = [
     'http://localhost:3000', // Local development
-    'https://taskmaster-sandy.vercel.app/login', // Vercel frontend URL
+    'https://taskmaster-sandy.vercel.app', // Vercel frontend link
+    'https://task-master-qz24.onrender.com', // Render backend
 ];
 
 // Middleware
@@ -25,6 +27,7 @@ app.use(cors({
         if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {
+            console.error(`CORS Error: Origin ${origin} not allowed.`);
             callback(new Error('Not allowed by CORS'));
         }
     },
@@ -47,5 +50,6 @@ app.get('/', (req, res) => {
     res.send('Welcome to the TaskMaster API! Use /api/auth and /api/tasks for endpoints.');
 });
 
+// Server Port
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
