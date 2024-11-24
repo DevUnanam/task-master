@@ -1,7 +1,7 @@
 const express = require('express');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
-const cors = require('cors'); // Import cors middleware
+const cors = require('cors'); 
 
 // Load environment variables
 dotenv.config();
@@ -11,14 +11,25 @@ const taskRoutes = require('./routes/taskRoutes');
 
 const app = express();
 
+const allowedOrigins = [
+    'http://localhost:3000', // Local development
+    'https://taskmaster-sandy.vercel.app/login', // Vercel frontend URL
+];
+
 // Middleware
 app.use(express.json());
 
 // Enable CORS
 app.use(cors({
-    origin: 'http://localhost:3000', 
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], 
-    allowedHeaders: ['Content-Type', 'Authorization'], 
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 // Allow preflight requests for all routes
